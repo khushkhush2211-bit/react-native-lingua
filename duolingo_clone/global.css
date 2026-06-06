@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    font-family: "Poppins", system-ui, sans-serif;
+    color: #0D132B;
+    background-color: #FFFFFF;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .font-poppins {
+    font-family: "Poppins", system-ui, sans-serif;
+  }
+
+  .h1 {
+    @apply text-h1 font-bold tracking-[-0.02em];
+  }
+
+  .h2 {
+    @apply text-h2 font-semibold tracking-[-0.01em];
+  }
+
+  .h3 {
+    @apply text-h3 font-semibold tracking-[-0.01em];
+  }
+
+  .h4 {
+    @apply text-h4 font-medium tracking-normal;
+  }
+
+  .body-lg {
+    @apply text-body-lg font-normal leading-[26px];
+  }
+
+  .body-md {
+    @apply text-body-md font-normal leading-[22px];
+  }
+
+  .body-sm {
+    @apply text-body-sm font-normal leading-[20px];
+  }
+
+  .caption {
+    @apply text-caption font-normal leading-[16px];
+  }
+
+  .bg-surface {
+    background-color: #F6F7FB;
+  }
+
+  .bg-background {
+    background-color: #FFFFFF;
+  }
+
+  .text-primary {
+    color: #0D132B;
+  }
+
+  .text-secondary {
+    color: #6B7280;
+  }
+
+  .border-default {
+    border-color: #E5E7EB;
+  }
+
+  .border-surface {
+    border-color: #F6F7FB;
+  }
+
+  .bg-brand-purple {
+    background-color: #6C4EF5;
+  }
+
+  .bg-brand-deep-purple {
+    background-color: #5B38F6;
+  }
+
+  .bg-brand-blue {
+    background-color: #4D8BFF;
+  }
+
+  .bg-brand-green {
+    background-color: #21C16B;
+  }
+
+  .text-brand-purple {
+    color: #6C4EF5;
+  }
+
+  .text-brand-deep-purple {
+    color: #5B38F6;
+  }
+
+  .text-brand-blue {
+    color: #4D8BFF;
+  }
+
+  .text-brand-green {
+    color: #21C16B;
+  }
+
+  .bg-success {
+    background-color: #21C16B;
+  }
+
+  .bg-warning {
+    background-color: #FFC800;
+  }
+
+  .bg-streak {
+    background-color: #FF8A00;
+  }
+
+  .bg-error {
+    background-color: #FF4D4F;
+  }
+
+  .bg-info {
+    background-color: #4D8BFF;
+  }
+
+  .text-success {
+    color: #21C16B;
+  }
+
+  .text-warning {
+    color: #FFC800;
+  }
+
+  .text-streak {
+    color: #FF8A00;
+  }
+
+  .text-error {
+    color: #FF4D4F;
+  }
+
+  .text-info {
+    color: #4D8BFF;
+  }
+
+  .shadow-soft {
+    shadow-color: rgba(51, 68, 194, 0.12);
+    shadow-offset: 0px 10px;
+    shadow-opacity: 0.12;
+    shadow-radius: 35px;
+    elevation: 10;
+  }
+
+  .rounded-3xl {
+    border-radius: 24px;
+  }
+
+  .rounded-2xl {
+    border-radius: 20px;
+  }
+}
