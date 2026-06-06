@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 
 export default function Index() {
@@ -6,7 +6,7 @@ export default function Index() {
 
   return (
     <View className="flex-1 justify-center items-center gap-6">
-      <Text className="h1 mt-90 text-center color-lingua-purple">Lingua</Text>
+      <Text className="h1 mt-90 text-center text-brand-purple">Lingua</Text>
       <TouchableOpacity
         onPress={() => router.push("/onboarding")}
         className="bg-brand-purple px-6 py-3 rounded-lg"
@@ -16,11 +16,3 @@ export default function Index() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

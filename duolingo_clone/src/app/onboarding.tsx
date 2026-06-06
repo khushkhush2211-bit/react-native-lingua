@@ -36,20 +36,20 @@ export default function Onboarding() {
 
           {/* Speech bubbles positioned around mascot */}
           <View className="absolute top-0 left-0">
-            <View className="bg-blue-100 px-4 py-2 rounded-2xl">
-              <Text className="text-sm font-medium text-gray-700">Hello!</Text>
+            <View className="bg-brand-blue px-4 py-2 rounded-2xl">
+              <Text className="text-sm font-medium text-white">Hello!</Text>
             </View>
           </View>
 
           <View className="absolute top-12 right-0">
-            <View className="bg-purple-100 px-4 py-2 rounded-2xl">
-              <Text className="text-sm font-medium text-brand-purple">¡Hola!</Text>
+            <View className="bg-brand-purple px-4 py-2 rounded-2xl">
+              <Text className="text-sm font-medium text-white">¡Hola!</Text>
             </View>
           </View>
 
           <View className="absolute bottom-0 right-0">
-            <View className="bg-orange-50 px-4 py-2 rounded-2xl">
-              <Text className="text-sm font-medium text-orange-600">你好!</Text>
+            <View className="bg-streak px-4 py-2 rounded-2xl">
+              <Text className="text-sm font-medium text-white">你好!</Text>
             </View>
           </View>
         </View>
