@@ -9,7 +9,7 @@ export default function Onboarding() {
       {/* Header with logo and app name */}
       <View className="flex-row items-center gap-2 mb-16">
         <View className="w-10 h-10 bg-orange-400 rounded-full" />
-        <Text className="text-xl font-bold text-primary">muolingo</Text>
+        <Text className="text-xl font-bold text-primary">lingua</Text>
       </View>
 
       {/* Main heading */}
@@ -26,29 +26,32 @@ export default function Onboarding() {
       </Text>
 
       {/* Mascot character section */}
-      <View className="flex-1 justify-center items-center relative mb-8">
-        {/* Speech bubbles */}
-        <View className="absolute top-0 left-0">
-          <View className="bg-blue-100 px-4 py-2 rounded-2xl">
-            <Text className="text-sm font-medium text-gray-700">Hello!</Text>
+      <View className="flex-1 justify-center items-center">
+        {/* Mascot placeholder with speech bubbles */}
+        <View className="relative w-64 h-64 justify-center items-center">
+          {/* Mascot */}
+          <View className="w-48 h-48 bg-orange-400 rounded-full justify-center items-center">
+            <Text className="text-6xl">🦊</Text>
           </View>
-        </View>
 
-        <View className="absolute top-16 right-0">
-          <View className="bg-purple-100 px-4 py-2 rounded-2xl">
-            <Text className="text-sm font-medium text-brand-purple">¡Hola!</Text>
+          {/* Speech bubbles positioned around mascot */}
+          <View className="absolute top-0 left-0">
+            <View className="bg-blue-100 px-4 py-2 rounded-2xl">
+              <Text className="text-sm font-medium text-gray-700">Hello!</Text>
+            </View>
           </View>
-        </View>
 
-        <View className="absolute bottom-12 right-2">
-          <View className="bg-orange-50 px-4 py-2 rounded-2xl">
-            <Text className="text-sm font-medium text-orange-600">你好!</Text>
+          <View className="absolute top-12 right-0">
+            <View className="bg-purple-100 px-4 py-2 rounded-2xl">
+              <Text className="text-sm font-medium text-brand-purple">¡Hola!</Text>
+            </View>
           </View>
-        </View>
 
-        {/* Mascot placeholder */}
-        <View className="w-48 h-48 bg-orange-400 rounded-full justify-center items-center">
-          <Text className="text-6xl">🦊</Text>
+          <View className="absolute bottom-0 right-0">
+            <View className="bg-orange-50 px-4 py-2 rounded-2xl">
+              <Text className="text-sm font-medium text-orange-600">你好!</Text>
+            </View>
+          </View>
         </View>
       </View>
 
