@@ -10,7 +10,7 @@ export default function Onboarding() {
       <View className="flex-row items-center gap-2 mb-16">
         <Image
           source={require("@/assets/images/icon.png")}
-          className="w-10 h-10"
+          style={{ width: 40, height: 40 }}
         />
         <Text className="text-xl font-bold text-primary">lingua</Text>
       </View>
@@ -35,7 +35,7 @@ export default function Onboarding() {
           {/* Mascot - will be replaced with actual image */}
           <Image
             source={require("@/assets/images/icon.png")}
-            className="w-48 h-48"
+            style={{ width: 192, height: 192 }}
           />
 
           {/* Speech bubbles positioned around mascot */}
