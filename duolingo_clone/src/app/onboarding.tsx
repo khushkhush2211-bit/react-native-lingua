@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 
 export default function Onboarding() {
@@ -8,7 +8,10 @@ export default function Onboarding() {
     <View className="flex-1 bg-white px-6 pt-12 pb-8">
       {/* Header with logo and app name */}
       <View className="flex-row items-center gap-2 mb-16">
-        <View className="w-10 h-10 bg-orange-400 rounded-full" />
+        <Image
+          source={require("@/assets/images/icon.png")}
+          className="w-10 h-10"
+        />
         <Text className="text-xl font-bold text-primary">lingua</Text>
       </View>
 
@@ -29,10 +32,11 @@ export default function Onboarding() {
       <View className="flex-1 justify-center items-center">
         {/* Mascot placeholder with speech bubbles */}
         <View className="relative w-64 h-64 justify-center items-center">
-          {/* Mascot */}
-          <View className="w-48 h-48 bg-orange-400 rounded-full justify-center items-center">
-            <Text className="text-6xl">🦊</Text>
-          </View>
+          {/* Mascot - will be replaced with actual image */}
+          <Image
+            source={require("@/assets/images/icon.png")}
+            className="w-48 h-48"
+          />
 
           {/* Speech bubbles positioned around mascot */}
           <View className="absolute top-0 left-0">
