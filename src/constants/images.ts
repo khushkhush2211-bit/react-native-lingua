@@ -6,6 +6,7 @@ import mascot from "../../assets/images/mascot.png";
 import mascotLogo from "../../assets/images/mascot-logo.png";
 import mascotPeek from "../../assets/images/mascot-peek.png";
 import splashIcon from "../../assets/images/splash-icon.png";
+import monuments from "../../assets/images/monuments.png";
 
 export const images = {
   appleLogo,
@@ -16,4 +17,5 @@ export const images = {
   mascotLogo,
   mascotPeek,
   splashIcon,
+  monuments,
 };
