@@ -11,6 +11,7 @@ import {
   View,
 } from "react-native";
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
+import * as Linking from "expo-linking";
 import { useAuth, useClerk, useSSO, useSignUp } from "@clerk/expo";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -49,7 +50,10 @@ export default function SignUpScreen() {
 
   const handleGoogleSignUp = async () => {
     setErrorMessage(null);
-    const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ strategy: "oauth_google" });
+    const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ 
+      strategy: "oauth_google",
+      redirectUrl: Linking.createURL('/')
+    });
     if (createdSessionId && setSSOActive) {
       await setSSOActive({ session: createdSessionId });
       router.replace("/");
@@ -58,7 +62,10 @@ export default function SignUpScreen() {
 
   const handleAppleSignUp = async () => {
     setErrorMessage(null);
-    const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ strategy: "oauth_apple" });
+    const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ 
+      strategy: "oauth_apple",
+      redirectUrl: Linking.createURL('/')
+    });
     if (createdSessionId && setSSOActive) {
       await setSSOActive({ session: createdSessionId });
       router.replace("/");
@@ -67,7 +74,10 @@ export default function SignUpScreen() {
 
   const handleFacebookSignUp = async () => {
     setErrorMessage(null);
-    const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ strategy: "oauth_facebook" });
+    const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ 
+      strategy: "oauth_facebook",
+      redirectUrl: Linking.createURL('/')
+    });
     if (createdSessionId && setSSOActive) {
       await setSSOActive({ session: createdSessionId });
       router.replace("/");

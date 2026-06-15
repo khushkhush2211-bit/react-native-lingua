@@ -26,28 +26,26 @@ export default function LanguageSelectionScreen() {
 
   const handleSelectLanguage = (id: string) => {
     setSelectedLanguageId(id);
-    // In a real app, we might navigate to the next screen or tabs here
-    // router.push('/(tabs)');
   };
 
   return (
     <View className="flex-1 bg-white" style={{ paddingTop: insets.top }}>
       {/* Header */}
-      <View className="flex-row items-center px-6 py-4">
-        <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2">
-          <Ionicons name="chevron-back" size={24} color="#1F2937" />
+      <View className="flex-row items-center px-4 py-4">
+        <TouchableOpacity onPress={() => router.back()} className="p-2">
+          <Ionicons name="chevron-back" size={24} color="#000" />
         </TouchableOpacity>
-        <Text className="flex-1 text-center text-xl font-bold text-gray-900 -ml-8">
+        <Text className="flex-1 text-center text-lg font-bold text-[#0D132B] mr-8">
           Choose a language
         </Text>
       </View>
 
-      {/* Search Bar */}
-      <View className="px-6 mb-6 mt-2">
-        <View className="flex-row items-center border border-gray-200 rounded-full px-4 py-3 bg-white">
-          <Ionicons name="search" size={20} color="#9CA3AF" />
-          <TextInput
-            className="flex-1 ml-2 text-base text-gray-900"
+        {/* Search Bar */}
+        <View className="px-4 mb-3">
+          <View className="flex-row items-center border border-gray-200 rounded-full px-4 py-2.5 bg-white">
+            <Ionicons name="search" size={20} color="#9CA3AF" />
+            <TextInput
+              className="flex-1 ml-2 text-base text-[#0D132B] p-0"
             placeholder="Search languages"
             placeholderTextColor="#9CA3AF"
             value={searchQuery}
@@ -58,13 +56,10 @@ export default function LanguageSelectionScreen() {
 
       <ScrollView 
         className="flex-1" 
-        contentContainerStyle={{ paddingBottom: 150 }}
+        contentContainerStyle={{ paddingBottom: 190 }}
         showsVerticalScrollIndicator={false}
       >
-        {/* Popular Section */}
-        <View className="px-6">
-          <Text className="text-lg font-bold text-gray-900 mb-4">Popular</Text>
-
+        <View className="px-4">
           {filteredLanguages.map((lang) => {
             const isSelected = selectedLanguageId === lang.id;
 
@@ -72,49 +67,32 @@ export default function LanguageSelectionScreen() {
               <TouchableOpacity
                 key={lang.id}
                 onPress={() => handleSelectLanguage(lang.id)}
-                className={`flex-row items-center p-4 mb-3 rounded-2xl border-2 ${
-                  isSelected ? 'border-brand-purple bg-purple-50/30' : 'border-gray-100 bg-white'
+                className={`flex-row items-center p-4 mb-3 rounded-2xl border bg-white ${
+                  isSelected ? 'border-[#6C4EF5]' : 'border-gray-200'
                 }`}
-                style={Platform.select({
-                  ios: {
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: isSelected ? 0 : 0.05,
-                    shadowRadius: 8,
-                  },
-                  android: {
-                    elevation: isSelected ? 0 : 2,
-                  },
-                })}
               >
-                {/* Flag */}
-                <View className="w-12 h-12 rounded-full border border-gray-100 items-center justify-center overflow-hidden bg-white">
-                  <Text className="text-3xl">{lang.flagIcon}</Text>
+                {/* 2-Letter Code */}
+                <View className="w-10 h-10 rounded-full border border-gray-200 items-center justify-center bg-white">
+                  <Text className="text-sm font-bold text-[#0D132B]">{lang.id.toUpperCase()}</Text>
                 </View>
 
                 {/* Info */}
                 <View className="flex-1 ml-4">
-                  <Text className="text-lg font-bold text-gray-900">{lang.name}</Text>
-                  <Text className="text-sm text-gray-500 mt-0.5">{formatLearners(lang.learners)}</Text>
+                  <Text className="text-base font-bold text-[#0D132B]">{lang.name}</Text>
+                  <Text className="text-[13px] text-[#9CA3AF] mt-0.5">{formatLearners(lang.learners)}</Text>
                 </View>
 
                 {/* Right Icon */}
                 {isSelected ? (
-                  <View className="w-6 h-6 rounded-full bg-brand-purple items-center justify-center">
+                  <View className="w-6 h-6 rounded-full bg-[#6C4EF5] items-center justify-center">
                     <Ionicons name="checkmark" size={16} color="white" />
                   </View>
                 ) : (
-                  <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+                  <Ionicons name="chevron-forward" size={20} color="#D1D5DB" />
                 )}
               </TouchableOpacity>
             );
           })}
-
-          {/* See All Languages Button */}
-          <TouchableOpacity className="flex-row items-center p-4 rounded-2xl border-2 border-gray-100 mt-2 bg-white">
-            <Ionicons name="globe-outline" size={24} color="#4B5563" />
-            <Text className="ml-4 font-bold text-gray-900 text-lg">See all languages</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
 
@@ -122,7 +100,7 @@ export default function LanguageSelectionScreen() {
       <View className="absolute bottom-0 w-full items-center pointer-events-none">
         <Image
           source={images.monuments}
-          style={{ width: '100%', height: 160 }}
+          style={{ width: '100%', height: 190 }}
           resizeMode="cover"
         />
       </View>

@@ -1,4 +1,4 @@
-import "../../global.css";
+import "../global.css";
 import { useEffect } from "react";
 import { ClerkProvider } from "@clerk/expo";
 import { tokenCache } from "@clerk/expo/token-cache";

@@ -1,5 +1,6 @@
 import { isClerkAPIResponseError, useAuth, useClerk, useSSO, useSignIn } from "@clerk/expo";
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
+import * as Linking from "expo-linking";
 import { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
@@ -56,7 +57,10 @@ export default function SignInScreen() {
   const handleGoogleSignIn = async () => {
     setErrorMessage(null);
     try {
-      const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ strategy: "oauth_google" });
+      const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ 
+        strategy: "oauth_google",
+        redirectUrl: Linking.createURL('/')
+      });
       if (createdSessionId && setSSOActive) {
         await setSSOActive({ session: createdSessionId });
         router.replace("/");
@@ -69,7 +73,10 @@ export default function SignInScreen() {
   const handleAppleSignIn = async () => {
     setErrorMessage(null);
     try {
-      const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ strategy: "oauth_apple" });
+      const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ 
+        strategy: "oauth_apple",
+        redirectUrl: Linking.createURL('/')
+      });
       if (createdSessionId && setSSOActive) {
         await setSSOActive({ session: createdSessionId });
         router.replace("/");
@@ -82,7 +89,10 @@ export default function SignInScreen() {
   const handleFacebookSignIn = async () => {
     setErrorMessage(null);
     try {
-      const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ strategy: "oauth_facebook" });
+      const { createdSessionId, setActive: setSSOActive } = await startSSOFlow({ 
+        strategy: "oauth_facebook",
+        redirectUrl: Linking.createURL('/')
+      });
       if (createdSessionId && setSSOActive) {
         await setSSOActive({ session: createdSessionId });
         router.replace("/");
