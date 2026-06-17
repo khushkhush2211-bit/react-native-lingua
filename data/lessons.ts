@@ -3,6 +3,7 @@ import { Lesson } from "@/types/learning";
 export const LESSONS: Lesson[] = [
   // SPANISH LESSONS (Luna)
   {
+    id: "es-l1",
     unitId: "es-unit-1",
     title: "Hola! Greetings",
     description: "Learn how to say hello and goodbye in Spanish",
