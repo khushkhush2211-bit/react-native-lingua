@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Image, ScrollView, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Image, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { languages } from '@/data/languages';
+import { LANGUAGES } from '@/data/languages';
 import { useUserStore } from '@/store/useUserStore';
 import { images } from '@/constants/images';
 
@@ -13,7 +13,7 @@ export default function LanguageSelectionScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const { selectedLanguageId, setSelectedLanguageId } = useUserStore();
 
-  const filteredLanguages = languages.filter((lang) =>
+  const filteredLanguages = LANGUAGES.filter((lang) =>
     lang.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -24,85 +24,104 @@ export default function LanguageSelectionScreen() {
     return num.toLocaleString() + ' learners';
   };
 
-  const handleSelectLanguage = (id: string) => {
-    setSelectedLanguageId(id);
+  const handleSelectLanguage = (code: string) => {
+    setSelectedLanguageId(code);
   };
 
   return (
-    <View className="flex-1 bg-white" style={{ paddingTop: insets.top }}>
-      {/* Header */}
-      <View className="flex-row items-center px-4 py-4">
-        <TouchableOpacity onPress={() => router.back()} className="p-2">
-          <Ionicons name="chevron-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text className="flex-1 text-center text-lg font-bold text-[#0D132B] mr-8">
-          Choose a language
-        </Text>
-      </View>
+    <View className="flex-1 bg-[#F7F7F7] items-center">
+      <View className="flex-1 w-full max-w-[430px] bg-white overflow-hidden relative" style={{ paddingTop: insets.top }}>
+        {/* Header */}
+        <View className="flex-row items-center justify-center px-4 py-4 relative">
+          <TouchableOpacity 
+            onPress={() => router.back()} 
+            className="absolute left-4 p-2 z-10"
+          >
+            <Ionicons name="chevron-back" size={24} color="#0D132B" />
+          </TouchableOpacity>
+          <Text className="text-[17px] font-bold text-[#0D132B]">
+            Choose a language
+          </Text>
+        </View>
 
         {/* Search Bar */}
-        <View className="px-4 mb-3">
-          <View className="flex-row items-center border border-gray-200 rounded-full px-4 py-2.5 bg-white">
+        <View className="px-4 mb-4 mt-2">
+          <View className="flex-row items-center border border-gray-100 rounded-2xl px-4 py-3.5 bg-[#FAFAFA]">
             <Ionicons name="search" size={20} color="#9CA3AF" />
             <TextInput
-              className="flex-1 ml-2 text-base text-[#0D132B] p-0"
-            placeholder="Search languages"
-            placeholderTextColor="#9CA3AF"
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
+              className="flex-1 ml-2 text-[15px] text-[#0D132B] p-0"
+              placeholder="Search languages"
+              placeholderTextColor="#9CA3AF"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+          </View>
         </View>
-      </View>
 
-      <ScrollView 
-        className="flex-1" 
-        contentContainerStyle={{ paddingBottom: 190 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <View className="px-4">
-          {filteredLanguages.map((lang) => {
-            const isSelected = selectedLanguageId === lang.id;
+        <ScrollView 
+          className="flex-1 z-10 w-full" 
+          contentContainerStyle={{ flexGrow: 1 }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View className="px-4">
+            {filteredLanguages.map((lang) => {
+              const isSelected = selectedLanguageId === lang.code;
 
-            return (
-              <TouchableOpacity
-                key={lang.id}
-                onPress={() => handleSelectLanguage(lang.id)}
-                className={`flex-row items-center p-4 mb-3 rounded-2xl border bg-white ${
-                  isSelected ? 'border-[#6C4EF5]' : 'border-gray-200'
-                }`}
-              >
-                {/* 2-Letter Code */}
-                <View className="w-10 h-10 rounded-full border border-gray-200 items-center justify-center bg-white">
-                  <Text className="text-sm font-bold text-[#0D132B]">{lang.id.toUpperCase()}</Text>
-                </View>
-
-                {/* Info */}
-                <View className="flex-1 ml-4">
-                  <Text className="text-base font-bold text-[#0D132B]">{lang.name}</Text>
-                  <Text className="text-[13px] text-[#9CA3AF] mt-0.5">{formatLearners(lang.learners)}</Text>
-                </View>
-
-                {/* Right Icon */}
-                {isSelected ? (
-                  <View className="w-6 h-6 rounded-full bg-[#6C4EF5] items-center justify-center">
-                    <Ionicons name="checkmark" size={16} color="white" />
+              return (
+                <TouchableOpacity
+                  key={lang.code}
+                  onPress={() => handleSelectLanguage(lang.code)}
+                  className={`flex-row items-center px-4 py-3 mb-1 rounded-[20px] ${
+                    isSelected ? 'border-2 border-[#8B5CF6] bg-[#F4F2FF]' : 'border-2 border-transparent bg-transparent'
+                  }`}
+                >
+                  {/* Flag Image */}
+                  <View className="w-10 h-10 rounded-full overflow-hidden">
+                    <Image 
+                      source={{ uri: lang.flag }} 
+                      style={{ width: '100%', height: '100%' }} 
+                      resizeMode="cover" 
+                    />
                   </View>
-                ) : (
-                  <Ionicons name="chevron-forward" size={20} color="#D1D5DB" />
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </ScrollView>
 
-      {/* Monuments Illustration */}
-      <View className="absolute bottom-0 w-full items-center pointer-events-none">
-        <Image
-          source={images.monuments}
-          style={{ width: '100%', height: 190 }}
-          resizeMode="cover"
-        />
+                  {/* Info */}
+                  <View className="flex-1 ml-4 justify-center">
+                    <Text className="text-[16px] font-bold text-[#0D132B]">{lang.name}</Text>
+                    <Text className="text-[14px] text-[#9CA3AF] mt-0.5">{formatLearners(lang.learners)}</Text>
+                  </View>
+
+                  {/* Right Icon */}
+                  {isSelected ? (
+                    <View className="w-6 h-6 rounded-full bg-[#8B5CF6] items-center justify-center">
+                      <Ionicons name="checkmark" size={16} color="white" />
+                    </View>
+                  ) : (
+                    <Ionicons name="chevron-forward" size={20} color="#D1D5DB" />
+                  )}
+                </TouchableOpacity>
+              );
+            })}
+
+            <TouchableOpacity 
+              onPress={() => router.push('/(tabs)')}
+              className="bg-[#8B5CF6] py-4 rounded-[20px] items-center justify-center mt-6 mb-8"
+              activeOpacity={0.8}
+            >
+              <Text className="text-white font-bold text-[16px]">Continue</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Globe/Monuments Illustration */}
+          <View className="w-full pointer-events-none overflow-hidden mt-auto" style={{ height: 180 }}>
+            <View style={{ width: '100%', aspectRatio: 1024/1024, position: 'absolute', top: 0 }}>
+              <Image
+                source={images.monuments}
+                style={{ width: '100%', height: '100%' }}
+                resizeMode="contain"
+              />
+            </View>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
